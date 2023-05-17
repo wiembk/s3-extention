@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_S3amazon
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_save_after">
+        <observer name="after_product_save" instance="Webkul\S3amazon\Observer\ProductSaveAfter" />
+    </event>
+    <event name="catalog_product_delete_before">
+        <observer name="before_product_delete" instance="Webkul\S3amazon\Observer\ProductDeleteBefore" />
+    </event>
+    <event name="admin_system_config_changed_section_s3_amazon">
+        <observer name="after_s3_amazon_config_save" instance="Webkul\S3amazon\Observer\AfterConfigSave"/>
+    </event>
+</config>

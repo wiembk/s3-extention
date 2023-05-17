@@ -1,0 +1,48 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_S3amazon
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$helper = $block->getHelper();
+
+if ($helper->getConfigValue('s3_amazon/general_settings/access_key') !== null &&
+    $helper->getConfigValue('s3_amazon/general_settings/secret_key') !== null
+) {
+    ?>
+    <div class="pp-buttons-container">
+        <button data-action="create" class="distribution_button" onclick="return false;">
+            <span><?= $escaper->escapeHtml($block->getButtonLabel()); ?></span>
+        </button>
+        <button data-action="getStatus" class="distribution_button" onclick="return false;">
+            <span><?= $escaper->escapeHtml($block->getStatusButtonLabel()); ?></span>
+        </button>
+        <p id="distribution_status"></p>
+    </div>
+    <?php
+        $data = json_encode(
+            [
+                "ajaxUrl" => $block->getAjaxUrl(),
+                "checkButton" => '.distribution_button',
+                'configForm' => '#config-edit-form',
+                'status' => '#distribution_status',
+                'distributionIdField' => '#s3_amazon_cloudfront_settings_distribution_id'
+            ]
+        );
+    ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Webkul_S3amazon/js/action/distribution": <?= /* @noEscape */ $data; ?>
+        }
+    }
+</script>
+    <?php
+}
+?>

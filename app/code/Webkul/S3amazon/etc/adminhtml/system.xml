@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_S3amazon
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="webkul" translate="label" sortOrder="10">
+            <label>Webkul</label>
+        </tab>
+        <section id="s3_amazon" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Amazon S3</label>
+            <tab>webkul</tab>
+            <resource>Webkul_S3amazon::config_s3amazon</resource>
+            <group id="general_settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Settings</label>
+                <field id="active" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow files to save on Amazon</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="access_key" translate="label comment" sortOrder="2" type="obscure" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Access Key ID</label>
+                    <validate>required-entry</validate>
+                    <comment>AWS Account Access Key ID</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="secret_key" translate="label comment" sortOrder="3" type="obscure" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Secret Key</label>
+                    <validate>required-entry</validate>
+                    <comment>AWS Account Secret Access Key</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="bucket" translate="label comment" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Bucket Name</label>
+                    <validate>required-entry</validate>
+                    <comment>Bucket that stores data</comment>
+                </field>
+                <field id="region" translate="label comment" sortOrder="5" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <source_model>Webkul\S3amazon\Model\Config\Source\Region</source_model>
+                    <label>Region</label>
+                    <validate>required-entry</validate>
+                    <comment>e.g: US East (Ohio)</comment>
+                </field>
+                <field id="check_bucket" translate="label" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Check Bucket Availability</label>
+                    <frontend_model>Webkul\S3amazon\Block\System\Config\Form\CheckButton</frontend_model>
+                </field>
+            </group>
+            <group id="cloudfront_settings" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>CloudFront Settings</label>
+                <field id="additional_comment" translate="label comment" sortOrder="1" type="label" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[<strong><label>Steps to setup AWS CloudFront:</label></strong>]]></label>
+                    <comment><![CDATA[
+                        <ol>
+                            <li>Setup from AWS console <a target="_blank" href="https://console.aws.amazon.com/cloudfront">CloudFront Dashboard</a> or by clicking on <strong>Create Distribution</strong> button.</li>
+                            <li>Enter the id of distribution in Distribution Id field and save the configuration.</li>
+                            <li>Click Check Status button to get the Domain Name (URL) and status of the Distribution.</li>
+                            <li>Distribution only works when it's status is <strong>Deployed</strong>.</li>
+                            <li>Use CloudFront Distribution Domain Name (URL) in Base URL for User Media Files instead of S3 bucket URL.</li>
+                        </ol>
+                    ]]></comment>
+                    <frontend_model>Webkul\S3amazon\Block\Adminhtml\System\Config\AdditionalComment</frontend_model>
+                </field>
+                <field id="create_distribution" translate="label comment" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Manage</label>
+                    <frontend_model>Webkul\S3amazon\Block\System\Config\Form\CreateDistributionButton</frontend_model>
+                </field>
+                <field id="distribution_id" translate="label comment" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Distribution Id</label>
+                </field>
+            </group>
+            <group id="staticfile_settings" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Static View Files Settings</label>
+                <field id="active" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable For Static View files</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="bucket" translate="label comment" sortOrder="2" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Bucket Name</label>
+                    <validate>required-entry</validate>
+                    <comment>Bucket For Static View Files</comment>
+                    <depends>
+                        <field id="s3_amazon/staticfile_settings/active">1</field>
+                    </depends>
+                </field>
+                <field id="region" translate="label comment" sortOrder="3" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <source_model>Webkul\S3amazon\Model\Config\Source\Region</source_model>
+                    <label>Region</label>
+                    <comment>e.g: US East (Ohio)</comment>
+                    <depends>
+                        <field id="s3_amazon/staticfile_settings/active">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="cache" translate="label" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Cache Settings</label>
+                <field id="cache_control" translate="label" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cache Control</label>
+                    <frontend_model>Webkul\S3amazon\Block\Adminhtml\System\Config\CacheTime</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

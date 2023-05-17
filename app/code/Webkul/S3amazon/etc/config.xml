@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_S3amazon
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>   
+        <s3_amazon>
+            <cache>
+                <cache_control>
+                    <item1>
+                        <file_type>js</file_type>
+                        <file_time>86400</file_time>
+                    </item1>
+                    <item2>
+                        <file_type>css</file_type>
+                        <file_time>86400</file_time>
+                    </item2>
+                    <item3>
+                        <file_type>html</file_type>
+                        <file_time>86400</file_time>
+                    </item3>
+                    <item4>
+                        <file_type>woff2</file_type>
+                        <file_time>86400</file_time>
+                    </item4>
+                    <item5>
+                        <file_type>png</file_type>
+                        <file_time>86400</file_time>
+                    </item5>
+                    <item6>
+                        <file_type>gif</file_type>
+                        <file_time>86400</file_time>
+                    </item6>
+                    <item7>
+                        <file_type>jpg</file_type>
+                        <file_time>86400</file_time>
+                    </item7>
+                    <item8>
+                        <file_type>jpeg</file_type>
+                        <file_time>86400</file_time>
+                    </item8>
+                    <item9>
+                        <file_type>webp</file_type>
+                        <file_time>86400</file_time>
+                    </item9>
+                    <item10>
+                        <file_type>other</file_type>
+                        <file_time>86400</file_time>
+                    </item10>
+                </cache_control>
+            </cache>
+        </s3_amazon>
+    </default>
+</config>

@@ -1,0 +1,21 @@
+{
+    "name": "webkul/amazon-s3",
+    "description": "S3amazon module for Magento2",
+    "require": {
+        "magento/module-catalog": "104.0.*",
+        "aws/aws-sdk-php": "*"
+    },
+    "type": "magento2-module",
+    "version": "4.1.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webkul\\S3amazon\\": ""
+        }
+    }
+}

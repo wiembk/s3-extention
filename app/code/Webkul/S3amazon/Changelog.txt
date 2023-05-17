@@ -1,0 +1,43 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 4.1.0 --------------------------------------
+	+ Added feature for static content files.
+	+ Added CLI command to synchronize static content on S3 bucket.
+	+ Admin can set cache time(max-age) for static content files.
+
+-------------------------------- Version 4.0.0 --------------------------------------
+	+ Compatible with Magento2.4.*
+	+ Added CLI command to synchronize media files.
+	+ Integrated S3 with cloudfront.
+	+ Admin can create cloudfront distribution and check status.
+	+ Admin can use any S3 bucket URL or cloudfront distribution URL.
+
+-------------------------------- Version 3.0.0 --------------------------------------
+	- Fixed clear bucket issue.
+	- Fixed cache images issue.
+	+ Added CSP for Magento2.3.5
+
+-------------------------------- Version 2.1.0 --------------------------------------
+
+ 	+ New S3 storage introduced for media files.
+	+ All media files are stored and retreive from Amazon Simple Storage Service (Amazon S3) bucket.
+	+ Media content delivered over the Content Delivery Network (CDN).
+	+ Compatible with Magento2.3.*
+
+-------------------------------- Version 2.0.1 --------------------------------------
+	+ Compatible with Magento 2.1.x
+	+ Added feature for static content files.
+	+ Added CLI command to synchronize static content on S3 bucket.
+	+ Added CLI command to synchronize media files.
+	+ Integrated S3 with cloudfront.
+	+ Admin can create cloudfront distribution and check status.
+	+ Admin can use any S3 bucket URL or cloudfront distribution URL.
+
+-------------------------------- Version 2.0.0 --------------------------------------
+
+ 	+ Working with Magento 2 Downloadable Products.
+ 	+ Admin can check the bucket availablity.
+    + Admin can Store and download the files from Amazon S3 Server.

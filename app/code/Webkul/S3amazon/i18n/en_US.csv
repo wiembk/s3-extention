@@ -1,0 +1,47 @@
+Check,Check
+"Create Distribution","Create Distribution"
+"Check Status","Check Status"
+"The specified bucket does not exist","The specified bucket does not exist"
+"Id: %1<br>","Id: %1<br>"
+"URL: %1<br>","URL: %1<br>"
+"Status: %1<br>","Status: %1<br>"
+"Amazon S3","Amazon S3"
+"Amazon S3 Storage","Amazon S3 Storage"
+"Access Key is required","Access Key is required"
+"Secret Key is required","Secret Key is required"
+"Bucket Name is required","Bucket Name is required"
+"Region is required","Region is required"
+Checking...,Checking...
+Status,Status
+"Distribution Id is required","Distribution Id is required"
+"Distribution already created","Distribution already created"
+Webkul,Webkul
+"General Settings","General Settings"
+"Allow files to save on Amazon","Allow files to save on Amazon"
+"Access Key ID","Access Key ID"
+"AWS Account Access Key ID","AWS Account Access Key ID"
+"Secret Key","Secret Key"
+"AWS Account Secret Access Key","AWS Account Secret Access Key"
+"Bucket Name","Bucket Name"
+"Bucket that stores data","Bucket that stores data"
+Region,Region
+"e.g: US East (Ohio)","e.g: US East (Ohio)"
+"Check Bucket Availability","Check Bucket Availability"
+"CloudFront Settings","CloudFront Settings"
+"<strong><label>Steps to setup AWS CloudFront:</label></strong>","<strong><label>Steps to setup AWS CloudFront:</label></strong>"
+"<ol>
+                            <li>Setup from AWS console <a target=""_blank"" href=""https://console.aws.amazon.com/cloudfront"">CloudFront Dashboard</a> or by clicking on <strong>Create Distribution</strong> button.</li>
+                            <li>Enter the id of distribution in Distribution Id field and save the configuration.</li>
+                            <li>Click Check Status button to get the Domain Name (URL) and status of the Distribution.</li>
+                            <li>Distribution only works when it's status is <strong>Deployed</strong>.</li>
+                            <li>Use CloudFront Distribution Domain Name (URL) in Base URL for User Media Files instead of S3 bucket URL.</li>
+                        </ol>","<ol>
+                            <li>Setup from AWS console <a target=""_blank"" href=""https://console.aws.amazon.com/cloudfront"">CloudFront Dashboard</a> or by clicking on <strong>Create Distribution</strong> button.</li>
+                            <li>Enter the id of distribution in Distribution Id field and save the configuration.</li>
+                            <li>Click Check Status button to get the Domain Name (URL) and status of the Distribution.</li>
+                            <li>Distribution only works when it's status is <strong>Deployed</strong>.</li>
+                            <li>Use CloudFront Distribution Domain Name (URL) in Base URL for User Media Files instead of S3 bucket URL.</li>
+                        </ol>"
+Manage,Manage
+"Distribution Id","Distribution Id"
+"Cache Settings","Cache Settings"

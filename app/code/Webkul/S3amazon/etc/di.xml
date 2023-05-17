@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_S3amazon
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Webkul\S3amazon\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Webkul\S3amazon\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">s3amazon_log_handler</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Webkul\S3amazon\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Plugin to provide S3 option under Media Storage -->
+    <type name="Magento\MediaStorage\Model\Config\Source\Storage\Media\Storage">
+        <plugin name="mediastorage_config_source_plugin" type="Webkul\S3amazon\Model\MediaStorage\Config\Source\Storage\Media\Storage\S3storage" />
+    </type>
+    <!-- Plugin to return S3 Model it is called only sync time -->
+    <type name="Magento\MediaStorage\Model\File\Storage">
+        <plugin name="aroundGetStorageModel" type="Webkul\S3amazon\Model\MediaStorage\File\Storage\StorageModel" />
+    </type>
+    <!-- Plugin for Wysiwyg Images -->
+    <type name="Magento\Cms\Model\Wysiwyg\Images\Storage">
+        <plugin name="cms_wysiwyg_images_storage_plugin" type="Webkul\S3amazon\Model\Cms\Wysiwyg\Images\Storage" />
+    </type>
+    <!-- Plugin to store Captcha images to S3 -->
+    <type name="Magento\Captcha\Model\DefaultModel">
+        <plugin name="captcha_default_model_plugin" type="Webkul\S3amazon\Model\Captcha\DefaultModel" />
+    </type>
+
+    <type name="Magento\MediaStorage\Helper\File\Storage\Database">
+        <plugin name="mediastorage_file_storage_database_helper" type="Webkul\S3amazon\Helper\MediaStorage\File\Storage\DatabaseHelper" />
+    </type>
+    <!-- To override the JS file -->
+    <type name="Magento\MediaStorage\Block\System\Config\System\Storage\Media\Synchronize">
+        <plugin name="storage_media_synchronise_plugin" type="Webkul\S3amazon\Block\MediaStorage\System\Config\System\Storage\Media\Synchronize" />
+    </type>
+
+    <type name="\Magento\MediaStorage\Model\File\Storage\Directory\Database">
+        <plugin name="directory_database_plugin" type="Webkul\S3amazon\Model\MediaStorage\File\Storage\Directory\Database" />
+    </type>
+    <type name="Magento\MediaStorage\Model\File\Storage\Database">
+        <plugin name="file_storage_database_plugin" type="Webkul\S3amazon\Model\MediaStorage\File\Storage\Database" />
+    </type>
+
+    <type name="Magento\MediaStorage\Service\ImageResize">
+        <plugin name="imageresize_plugin" type="Webkul\S3amazon\Service\MediaStorage\ImageResize" />
+    </type>
+
+    <type name="Magento\MediaStorage\Model\File\Storage\Synchronization">
+        <plugin name="file_storage_synchronisation_plugin" type="Webkul\S3amazon\Model\MediaStorage\File\Storage\Synchronisation" />
+    </type>
+    <type name="Magento\Downloadable\Model\Link\ContentValidator">
+        <plugin name="link_contentvalidator_plugin" type="Webkul\S3amazon\Model\Downloadable\Link\ContentValidator" />
+    </type>
+    <type name="Magento\Downloadable\Model\Sample\ContentValidator">
+        <plugin name="sample_link_contentvalidator_plugin" type="Webkul\S3amazon\Model\Downloadable\Sample\ContentValidator" />
+    </type>
+
+    <preference for="Magento\Catalog\Model\View\Asset\Image" type="Webkul\S3amazon\Model\Catalog\View\Asset\Image" />
+    <preference for="Magento\Downloadable\Controller\Download\Link" type="Webkul\S3amazon\Controller\Downloadable\Download"/>
+    <type name="Magento\MediaStorage\Model\File\Uploader">
+        <plugin name="core_file_uploader_plugin" type="Webkul\S3amazon\Model\MediaStorage\File\Uploader"/>
+    </type>
+
+    <type name="Magento\Swatches\Helper\Media">
+        <plugin name="swatch_images_plugin" type="Webkul\S3amazon\Helper\Swatches\Media"/>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="sync_command_to_s3" xsi:type="object">Webkul\S3amazon\Console\Command\ImportMedia</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="static_view_sync_command_to_s3" xsi:type="object">Webkul\S3amazon\Console\Command\StaticFilesDeploy</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugin to stop symlink -->
+    <type name="Magento\Framework\App\View\Asset\MaterializationStrategy\Symlink">
+        <plugin name="afterIsSupported" type="Webkul\S3amazon\Asset\MaterializationStrategy\Symlink"/>
+    </type>
+
+    <type name="Magento\Framework\App\Config\Value">
+        <plugin name="aroundGetOldValue" type="Webkul\S3amazon\Model\Config\Value"/>
+    </type>
+    <!-- Plugin to upload new cache merged file -->
+    <type name="Magento\Framework\View\Asset\MergeStrategy\Direct">
+        <plugin name="afterMergeAsset" type="Webkul\S3amazon\Asset\MergeStrategy\Direct"/>
+    </type>
+    <type name="Magento\MediaStorage\Model\ResourceModel\File\Storage\File">
+        <plugin name="afterSaveFile" type="Webkul\S3amazon\Model\ResourceModel\MediaStorage\File\Storage\File"/>
+    </type>
+    <!-- plugin for custom option's media download -->
+    <type name="Magento\Sales\Model\Download">
+        <plugin name="afterSaveFile" type="Webkul\S3amazon\Model\Sales\Download"/>
+    </type>
+    <!-- Remove double forward slashes from image name uploaded from admin config -->
+    <preference for="Magento\Config\Model\Config\Backend\Image" type="Webkul\S3amazon\Model\Config\Backend\Image"/>
+</config>
